@@ -1,7 +1,7 @@
 {
-  "name": "self-responsive-container",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "name": "@21GramConsulting/self-responsive-container",
+  "version": "1.0.0",
+  "description": "A Stencil based Web Component which aims to resolve the problem of having responsive images relative to their element size instead of the screen as a whole.",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
