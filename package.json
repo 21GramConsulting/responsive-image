@@ -29,7 +29,7 @@
     "posttest": "npm run lint"
   },
   "dependencies": {
-    "@stencil/core": "^2.0.1"
+    "@stencil/core": "2.0.3"
   },
   "license": "MIT",
   "devDependencies": {
