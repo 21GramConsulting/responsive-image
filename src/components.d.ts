@@ -6,56 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface G21ResponsiveImage {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLG21ResponsiveImageElement extends Components.G21ResponsiveImage, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLG21ResponsiveImageElement: {
+        prototype: HTMLG21ResponsiveImageElement;
+        new (): HTMLG21ResponsiveImageElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "g21-responsive-image": HTMLG21ResponsiveImageElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface G21ResponsiveImage {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "g21-responsive-image": G21ResponsiveImage;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "g21-responsive-image": LocalJSX.G21ResponsiveImage & JSXBase.HTMLAttributes<HTMLG21ResponsiveImageElement>;
         }
     }
 }

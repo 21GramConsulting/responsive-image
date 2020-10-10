@@ -1,10 +1,10 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'self-responsive-container',
+  namespace    : 'self-responsive-container',
   outputTargets: [
     {
-      type: 'dist',
+      type         : 'dist',
       esmLoaderPath: '../loader',
     },
     {
@@ -12,9 +12,11 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      dir : 'docs',
     },
     {
-      type: 'www',
+      type         : 'www',
+      dir          : 'sandbox',
       serviceWorker: null, // disable service workers
     },
   ],
