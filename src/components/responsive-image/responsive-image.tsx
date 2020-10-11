@@ -34,7 +34,7 @@ export class ResponsiveImage implements ComponentInterface {
   private resizeObserver?: ResizeObserver;
   private photoVariations: Array<HTMLG21ResponsiveImageVariationElement> = [];
 
-  connectedCallback(): void {
+  public connectedCallback(): void {
     this.resizeObserver = new ResizeObserver(
       l => l.forEach(
         e => this.elementResize.emit(e),
