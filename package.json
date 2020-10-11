@@ -1,0 +1,72 @@
+{
+  "name": "@21GramConsulting/responsive-image",
+  "version": "1.0.0",
+  "description": "A Stencil based Web Component which aims to resolve the problem of having responsive images relative to their element size instead of the screen as a whole.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/custom-elements/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/21GramConsulting/responsive-image"
+  },
+  "types": "dist/custom-elements/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/self-responsive-container/self-responsive-container.js",
+  "browserslist": [
+    "not ie",
+    "edge >= 79",
+    "firefox >= 69",
+    "chrome >= 64",
+    "safari >= 13.1",
+    "opera >= 52",
+    "ios_saf >= 13.7",
+    "not op_mini",
+    "android >= 81",
+    "op_mob >= 59",
+    "and_chr >= 85",
+    "and_ff >= 79",
+    "not and_uc",
+    "samsung >= 9.2",
+    "and_qq >= 10.4"
+  ],
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate",
+    "lint": "gts lint",
+    "clean": "rm -rf dist && rm -rf loader && rm -rf sandbox && rm -rf test-coverage",
+    "fix": "gts fix",
+    "posttest": "npm run lint",
+    "prepublish": "npm run clean && npm run build && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@stencil/core": "2.0.3"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gts": "^3.0.0",
+    "typescript": "^4.0.3",
+    "@types/node": "^14.11.2",
+    "@types/jest": "25.2.3",
+    "@types/puppeteer": "2.0.1",
+    "jest": "26.0.1",
+    "jest-cli": "26.0.1",
+    "puppeteer": "2.1.1",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "@types/prettier": "^2.1.2",
+    "@types/resize-observer-browser": "^0.1.3"
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+      name="viewport"
+    />
+    <title>Self Responsive Container Sandbox</title>
+
+    <script src="/build/self-responsive-container.esm.js"
+            type="module"
+    ></script>
+    <script nomodule src="/build/self-responsive-container.js"></script>
+    <style>
+      g21-responsive-image {
+        width           : 640px;
+        height          : 320px;
+        background-size : cover;
+      }
+    </style>
+  </head>
+  <body>
+    <g21-responsive-image id="responsiveImageDemo"></g21-responsive-image>
+    <script type="text/javascript">
+      const demo = document.getElementById('responsiveImageDemo');
+      const aspectRatio = 320 / 240;
+      const widths = [320, 375, 414, 568, 667, 736, 812, 768, 834, 1024, 1112, 1366, 1440, 1680, 1920, 2048, 2560, 2560, 3440, 3840];
+      const variations = widths
+        .map(width => ({
+          width,
+          height: Math.round(width / aspectRatio),
+        }))
+        .map(size => [1, 2].map(devicePixelRatio => ({
+          ...size,
+          devicePixelRatio,
+          uri: `/sandbox-assets/demo/${size.width * devicePixelRatio}px.jpeg`,
+        })))
+        .reduce((l, p) => l.concat(p), [])
+        .map(p => {
+          const variation = document.createElement('g21-responsive-image-variation');
+          variation.uri = p.uri;
+          variation.width = p.width;
+          variation.height = p.height;
+          variation.devicePixelRatio = p.devicePixelRatio;
+          return variation;
+        });
+      demo.append.apply(demo, variations);
+    </script>
+  </body>
+</html>
