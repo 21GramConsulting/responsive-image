@@ -1,6 +1,6 @@
 {
   "name": "@21GramConsulting/responsive-image",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Stencil based Web Component which aims to resolve the problem of having responsive images relative to their element size instead of the screen as a whole.",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -51,7 +51,8 @@
     "prepublish": "npm run clean && npm run build && npm run test && npm run build"
   },
   "dependencies": {
-    "@stencil/core": "2.0.3"
+    "@stencil/core": "2.0.3",
+    "@types/resize-observer-browser": "^0.1.3"
   },
   "license": "MIT",
   "devDependencies": {
@@ -66,7 +67,6 @@
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2",
-    "@types/prettier": "^2.1.2",
-    "@types/resize-observer-browser": "^0.1.3"
+    "@types/prettier": "^2.1.2"
   }
 }
