@@ -10,6 +10,23 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/self-responsive-container/self-responsive-container.js",
+  "browserslist": [
+    "not ie",
+    "edge >= 79",
+    "firefox >= 69",
+    "chrome >= 64",
+    "safari >= 13.1",
+    "opera >= 52",
+    "ios_saf >= 13.7",
+    "not op_mini",
+    "android >= 81",
+    "op_mob >= 59",
+    "and_chr >= 85",
+    "and_ff >= 79",
+    "not and_uc",
+    "samsung >= 9.2",
+    "and_qq >= 10.4"
+  ],
   "files": [
     "dist/",
     "loader/"
@@ -21,12 +38,10 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "lint": "gts lint",
-    "clean": "gts clean",
-    "compile": "tsc",
+    "clean": "rm -rf dist && rm -rf loader && rm -rf sandbox && rm -rf test-coverage",
     "fix": "gts fix",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "prepublish": "npm run clean && npm run build && npm run test && npm run build"
   },
   "dependencies": {
     "@stencil/core": "2.0.3"
@@ -44,6 +59,7 @@
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2",
-    "@types/prettier": "^2.1.2"
+    "@types/prettier": "^2.1.2",
+    "@types/resize-observer-browser": "^0.1.3"
   }
 }
