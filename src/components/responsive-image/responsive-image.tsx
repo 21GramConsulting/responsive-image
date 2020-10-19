@@ -9,6 +9,7 @@ import {
   JSX,
   Listen,
   Method,
+  State,
 } from '@stencil/core';
 import { ResponsiveImageVariation } from '../responsive-image-variation/responsive-image-variation';
 
@@ -33,6 +34,7 @@ export class ResponsiveImage implements ComponentInterface {
 
   private resizeObserver?: ResizeObserver;
   private photoVariations: Array<HTMLG21ResponsiveImageVariationElement> = [];
+  @State() private backgroundImageToRender?: string;
 
   public connectedCallback(): void {
     this.resizeObserver = new ResizeObserver(
@@ -94,12 +96,12 @@ export class ResponsiveImage implements ComponentInterface {
           + ((hDeltaA - hDeltaB) * heightPriority);
       });
 
-    this.host.style.backgroundImage = `url(${prioritySortedPhotoVariations[0].uri})`;
+    this.backgroundImageToRender = `url(${prioritySortedPhotoVariations[0].uri})`;
   }
 
   public render(): JSX.Element {
     return (
-      <Host>
+      <Host style={{ backgroundImage: this.backgroundImageToRender }}>
         <slot onSlotchange={() => this.onSlotChange()} />
       </Host>
     );
