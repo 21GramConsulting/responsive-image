@@ -1,4 +1,5 @@
 import {
+  Build,
   Component,
   ComponentInterface,
   Element,
@@ -22,8 +23,6 @@ export class ResponsiveImage implements ComponentInterface {
 
   @Element()
   private host!: HTMLElement;
-
-
   /**
    * Event fired when the host element is resized.
    * @type {EventEmitter<ResizeObserverEntry>}
@@ -31,17 +30,16 @@ export class ResponsiveImage implements ComponentInterface {
    */
   @Event({ bubbles: true, cancelable: false })
   private elementResize!: EventEmitter<ResizeObserverEntry>;
-
   private resizeObserver?: ResizeObserver;
   private photoVariations: Array<HTMLG21ResponsiveImageVariationElement> = [];
   @State() private backgroundImageToRender?: string;
 
+  constructor() {
+    this.onSlotChange = this.onSlotChange.bind(this);
+  }
+
   public connectedCallback(): void {
-    this.resizeObserver = new ResizeObserver(
-      l => l.forEach(
-        e => this.elementResize.emit(e),
-      ),
-    );
+    if (Build.isBrowser) this.browserConnectedCallback();
   }
 
   public componentDidRender(): void {
@@ -49,7 +47,7 @@ export class ResponsiveImage implements ComponentInterface {
   }
 
   public disconnectedCallback(): void {
-    this.resizeObserver?.unobserve(this.host);
+    if (Build.isBrowser) this.browserDisconnectedCallback();
   }
 
   /**
@@ -102,9 +100,24 @@ export class ResponsiveImage implements ComponentInterface {
   public render(): JSX.Element {
     return (
       <Host style={{ backgroundImage: this.backgroundImageToRender }}>
-        <slot onSlotchange={() => this.onSlotChange()} />
+        <slot/>
       </Host>
     );
+  }
+
+  private browserDisconnectedCallback(): void {
+    this.resizeObserver?.unobserve(this.host);
+    this.host.shadowRoot?.removeEventListener('slotchange', this.onSlotChange);
+  }
+
+  private browserConnectedCallback(): void {
+    this.resizeObserver = new ResizeObserver(
+      l => l.forEach(
+        e => this.elementResize.emit(e),
+      ),
+    );
+    this.host.shadowRoot?.addEventListener('slotchange', this.onSlotChange);
+    this.onSlotChange();
   }
 
   private onSlotChange(): void {
