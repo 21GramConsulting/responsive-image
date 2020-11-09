@@ -1,4 +1,5 @@
 import {
+  Build,
   Component,
   ComponentInterface,
   Element,
@@ -37,11 +38,7 @@ export class ResponsiveImage implements ComponentInterface {
   @State() private backgroundImageToRender?: string;
 
   public connectedCallback(): void {
-    this.resizeObserver = new ResizeObserver(
-      l => l.forEach(
-        e => this.elementResize.emit(e),
-      ),
-    );
+    if (Build.isBrowser) this.browserConnectedCallback();
   }
 
   public componentDidRender(): void {
@@ -49,7 +46,7 @@ export class ResponsiveImage implements ComponentInterface {
   }
 
   public disconnectedCallback(): void {
-    this.resizeObserver?.unobserve(this.host);
+    if (Build.isBrowser) this.browserDisconnectedCallback();
   }
 
   /**
@@ -104,6 +101,18 @@ export class ResponsiveImage implements ComponentInterface {
       <Host style={{ backgroundImage: this.backgroundImageToRender }}>
         <slot onSlotchange={() => this.onSlotChange()} />
       </Host>
+    );
+  }
+
+  private browserDisconnectedCallback(): void {
+    this.resizeObserver?.unobserve(this.host);
+  }
+
+  private browserConnectedCallback(): void {
+    this.resizeObserver = new ResizeObserver(
+      l => l.forEach(
+        e => this.elementResize.emit(e),
+      ),
     );
   }
 
