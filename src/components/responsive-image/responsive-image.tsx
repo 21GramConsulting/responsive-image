@@ -13,6 +13,7 @@ import {
   State,
 } from '@stencil/core';
 import { ResponsiveImageVariation } from '../responsive-image-variation/responsive-image-variation';
+import ResizeObserver from "resize-observer-polyfill";
 
 @Component({
   tag     : 'g21-responsive-image',
